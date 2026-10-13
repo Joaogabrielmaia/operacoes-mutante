@@ -73,4 +73,129 @@ describe('Suíte de Testes Fraca para 50 Operações Aritméticas', () => {
   test('48. deve calcular o dobro de um número', () => { expect(dobro(10)).toBe(20); });
   test('49. deve calcular o triplo de um número', () => { expect(triplo(10)).toBe(30); });
   test('50. deve calcular a metade de um número', () => { expect(metade(20)).toBe(10); });
+
+    // === Testes adicionais para o Teste de Mutação ===
+
+  test('51. deve rejeitar raiz quadrada de número negativo', () => {
+    expect(() => raizQuadrada(-4)).toThrow();
+  });
+
+  test('52. deve calcular raiz quadrada de zero', () => {
+    expect(raizQuadrada(0)).toBe(0);
+  });
+
+  test('53. deve rejeitar fatorial negativo', () => {
+    expect(() => fatorial(-1)).toThrow();
+  });
+
+  test('54. deve calcular fatoriais de zero e um', () => {
+    expect(fatorial(0)).toBe(1);
+    expect(fatorial(1)).toBe(1);
+  });
+
+  test('55. deve calcular a média de array vazio', () => {
+    expect(mediaArray([])).toBe(0);
+  });
+
+  test('56. deve verificar arrays vazios em máximo e mínimo', () => {
+    expect(() => maximoArray([])).toThrow();
+    expect(() => minimoArray([])).toThrow();
+  });
+
+  test('57. deve identificar números pares e ímpares corretamente', () => {
+    expect(isPar(4)).toBe(true);
+    expect(isPar(5)).toBe(false);
+    expect(isImpar(5)).toBe(true);
+    expect(isImpar(4)).toBe(false);
+  });
+
+  test('58. deve identificar números primos e compostos', () => {
+    expect(isPrimo(1)).toBe(false);
+    expect(isPrimo(2)).toBe(true);
+    expect(isPrimo(9)).toBe(false);
+    expect(isPrimo(11)).toBe(true);
+  });
+
+  test('59. deve limitar valores abaixo e acima do intervalo', () => {
+    expect(clamp(-1, 0, 10)).toBe(0);
+    expect(clamp(11, 0, 10)).toBe(10);
+    expect(clamp(0, 0, 10)).toBe(0);
+    expect(clamp(10, 0, 10)).toBe(10);
+  });
+
+  test('60. deve verificar divisibilidade verdadeira e falsa', () => {
+    expect(isDivisivel(10, 2)).toBe(true);
+    expect(isDivisivel(10, 3)).toBe(false);
+  });
+
+  test('61. deve converter temperaturas diferentes de zero', () => {
+    expect(celsiusParaFahrenheit(100)).toBe(212);
+    expect(fahrenheitParaCelsius(212)).toBeCloseTo(100);
+  });
+
+  test('62. deve rejeitar inverso de zero', () => {
+    expect(() => inverso(0)).toThrow();
+  });
+
+  test('63. deve comparar números maiores, menores e iguais', () => {
+    expect(isMaiorQue(5, 5)).toBe(false);
+    expect(isMenorQue(5, 5)).toBe(false);
+    expect(isEqual(5, 6)).toBe(false);
+  });
+
+  test('64. deve calcular mediana de array par e desordenado', () => {
+    expect(medianaArray([4, 1, 3, 2])).toBe(2.5);
+  });
+
+  test('65. deve rejeitar mediana de array vazio', () => {
+    expect(() => medianaArray([])).toThrow();
+  });
+    // === Testes adicionais para mutantes sobreviventes ===
+
+  test('66. deve validar a mensagem de erro da divisão por zero', () => {
+    expect(() => divisao(5, 0)).toThrow('Divisão por zero não é permitida.');
+  });
+
+  test('67. deve validar a mensagem de erro da raiz quadrada negativa', () => {
+    expect(() => raizQuadrada(-4)).toThrow(
+      'Não é possível calcular a raiz quadrada de um número negativo.'
+    );
+  });
+
+  test('68. deve validar a mensagem de erro do fatorial negativo', () => {
+    expect(() => fatorial(-1)).toThrow(
+      'Fatorial não é definido para números negativos.'
+    );
+  });
+
+  test('69. deve validar a mensagem de erro de máximo e mínimo vazios', () => {
+    expect(() => maximoArray([])).toThrow('Array vazio');
+    expect(() => minimoArray([])).toThrow('Array vazio');
+  });
+
+  test('70. deve validar a mensagem de erro do inverso de zero', () => {
+    expect(() => inverso(0)).toThrow('Não é possível inverter o número zero.');
+  });
+
+  test('71. deve retornar um para o produto de array vazio', () => {
+    expect(produtoArray([])).toBe(1);
+  });
+
+  test('72. deve manter os valores exatamente nos limites do clamp', () => {
+    expect(clamp(0, 0, 10)).toBe(0);
+    expect(clamp(10, 0, 10)).toBe(10);
+  });
+
+  test('73. deve validar a mensagem de erro da mediana de array vazio', () => {
+    expect(() => medianaArray([])).toThrow('Array vazio');
+  });
+    test('74. deve calcular fatoriais maiores que um', () => {
+    expect(fatorial(2)).toBe(2);
+    expect(fatorial(5)).toBe(120);
+  });
+
+  test('75. deve calcular produto de array com zero e negativos', () => {
+    expect(produtoArray([2, -3, 4])).toBe(-24);
+    expect(produtoArray([2, 0, 4])).toBe(0);
+  });
 });
